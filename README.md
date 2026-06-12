@@ -49,7 +49,7 @@ Proje tamamen bağımsız (Vanilla JS) olarak geliştirildiği için herhangi bi
 
 ```text
 lol-champion-gallery/
-│
+resim dosyaları , css ve js dosyaları ihtiyaç duyulmadığı için sonradan kaldırılmıştır
 ├── index.html          # Ana HTML iskeleti, CSS stilleri ve JS motoru (Tek sayfa mimarisi)
 └── README.md           # Proje hakkında bilgilendirme dosyası
 
