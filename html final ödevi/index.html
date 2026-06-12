@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Şampiyon Rehberi ve Galerisi | LoL</title>
+
+    <!-- Google Fonts: Cinzel (başlıklar) + Rajdhani (metin) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ========== CSS CUSTOM PROPERTIES ========== */
+      :root {
+        --hextech-gold: #c8aa6e;
+        --hextech-dark-gold: #937341;
+        --bg-dark-primary: #0a0e13;
+        --bg-dark-secondary: #121a23;
+        --neon-blue: #00bfff;
+        --text-primary: #f0e6d2;
+        --text-secondary: #a0a5b5;
+
+        --card-border: #1e2a3a;
+        --card-bg: #0f1923;
+        --overlay-dark: rgba(5, 10, 18, 0.75);
+        --shadow-gold: 0 0 20px rgba(200, 170, 110, 0.5);
+        --shadow-blue: 0 0 15px rgba(0, 191, 255, 0.6);
+        --transition-smooth: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --border-radius-card: 8px;
+        --border-radius-btn: 30px;
+        --font-heading: "Cinzel", "Times New Roman", serif;
+        --font-body: "Rajdhani", "Helvetica Neue", "Arial", sans-serif;
+      }
+
+      /* ========== SCROLLBAR ÖZELLEŞTİRMESİ ========== */
+      ::-webkit-scrollbar {
+        width: 9px;
+        height: 9px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-dark-primary);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          180deg,
+          var(--hextech-gold) 0%,
+          var(--hextech-dark-gold) 100%
+        );
+        border-radius: 10px;
+        border: 2px solid var(--bg-dark-primary);
+        transition: background 0.3s;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--hextech-gold);
+      }
+      html {
+        scrollbar-color: var(--hextech-gold) var(--bg-dark-primary);
+        scrollbar-width: thin;
+      }
+
+      /* ========== GENEL SIFIRLAMA & TİPOGRAFİ ========== */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-body);
+        background-color: var(--bg-dark-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        font-weight: 400;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        line-height: 1.3;
+      }
+      p {
+        font-family: var(--font-body);
+        color: var(--text-secondary);
+        font-weight: 400;
+        letter-spacing: 0.5px;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: color var(--transition-smooth);
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ========== HERO SECTION ========== */
+      .hero {
+        position: relative;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg");
+        background-size: cover;
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        isolation: isolate;
+        padding: 2rem;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(10, 14, 19, 0.85) 0%,
+            rgba(10, 14, 19, 0.55) 60%,
+            rgba(10, 14, 19, 0.9) 100%
+          ),
+          radial-gradient(
+            ellipse at 30% 40%,
+            rgba(200, 170, 110, 0.15) 0%,
+            transparent 60%
+          );
+        z-index: 0;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 850px;
+        margin: 0 auto;
+      }
+      .hero-logo {
+        font-family: var(--font-heading);
+        font-size: clamp(2.8rem, 8vw, 5.2rem);
+        font-weight: 900;
+        letter-spacing: 7px;
+        color: var(--hextech-gold);
+        text-shadow:
+          0 0 30px rgba(200, 170, 110, 0.7),
+          0 4px 12px rgba(0, 0, 0, 0.8);
+        margin-bottom: 1.8rem;
+        word-break: break-word;
+        line-height: 1.1;
+      }
+      .hero-title {
+        font-size: clamp(2.4rem, 7vw, 4.2rem);
+        color: var(--text-primary);
+        text-shadow:
+          0 0 35px rgba(200, 170, 110, 0.6),
+          0 0 70px rgba(0, 191, 255, 0.3);
+        letter-spacing: 6px;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+      }
+      .hero-subtitle {
+        font-family: var(--font-body);
+        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        color: var(--text-secondary);
+        letter-spacing: 1.4px;
+        font-weight: 500;
+        max-width: 650px;
+        margin: 0 auto;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      }
+
+      /* ========== KONTROL PANELİ ========== */
+      .controls {
+        background: var(--bg-dark-secondary);
+        border-bottom: 1px solid rgba(200, 170, 110, 0.2);
+        padding: 2.8rem 2rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.2rem;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+        position: relative;
+        z-index: 10;
+      }
+      .search-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 580px;
+      }
+      .search-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        pointer-events: none;
+        transition: color var(--transition-smooth);
+        z-index: 2;
+      }
+      .search-input {
+        width: 100%;
+        padding: 1rem 1.3rem 1rem 3.5rem;
+        background: var(--bg-dark-primary);
+        border: 1px solid var(--card-border);
+        border-radius: 40px;
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        letter-spacing: 0.8px;
+        transition: all var(--transition-smooth);
+        outline: none;
+      }
+      .search-input::placeholder {
+        color: var(--text-secondary);
+        font-weight: 400;
+        opacity: 0.8;
+      }
+      .search-input:focus {
+        border-color: var(--hextech-gold);
+        box-shadow:
+          0 0 25px rgba(200, 170, 110, 0.55),
+          inset 0 0 12px rgba(200, 170, 110, 0.08);
+        background: #0c121b;
+      }
+      .search-wrapper:focus-within .search-icon {
+        color: var(--hextech-gold);
+      }
+
+      .filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+      }
+      .filter-btn {
+        padding: 0.7rem 1.6rem;
+        background: transparent;
+        border: 1px solid var(--hextech-dark-gold);
+        border-radius: var(--border-radius-btn);
+        font-family: var(--font-heading);
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 1.8px;
+        color: var(--hextech-gold);
+        cursor: pointer;
+        transition: all var(--transition-smooth);
+        text-transform: uppercase;
+        background: rgba(18, 26, 35, 0.8);
+        backdrop-filter: blur(4px);
+        white-space: nowrap;
+      }
+      .filter-btn:hover {
+        background: rgba(200, 170, 110, 0.2);
+        box-shadow: var(--shadow-gold);
+        border-color: var(--hextech-gold);
+        transform: translateY(-2px);
+      }
+      .filter-btn.active {
+        background: var(--hextech-gold);
+        color: var(--bg-dark-primary);
+        border-color: var(--hextech-gold);
+        font-weight: 700;
+        box-shadow: 0 0 22px rgba(200, 170, 110, 0.7);
+      }
+
+      /* ========== GALERİ (CSS GRID) ========== */
+      .gallery-section {
+        padding: 3rem 2rem 4.5rem;
+        max-width: 1450px;
+        margin: 0 auto;
+      }
+      .champion-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 2.2rem;
+        justify-items: center;
+      }
+      .champion-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--border-radius-card);
+        overflow: hidden;
+        width: 100%;
+        max-width: 280px;
+        cursor: pointer;
+        transition: all var(--transition-smooth);
+        position: relative;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+      }
+      .champion-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        border-color: var(--hextech-gold);
+        box-shadow:
+          0 0 30px rgba(200, 170, 110, 0.55),
+          0 18px 40px rgba(0, 0, 0, 0.8);
+      }
+      .card-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 320px;
+        background: #03070c;
+      }
+      .card-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        transition: transform 0.5s ease;
+      }
+      .champion-card:hover .card-image-wrapper img {
+        transform: scale(1.09);
+      }
+      .card-info {
+        padding: 1.3rem 1rem 1.4rem;
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          rgba(18, 26, 35, 0.95) 0%,
+          var(--card-bg) 100%
+        );
+      }
+      .card-name {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: 2.8px;
+        color: var(--text-primary);
+        margin-bottom: 0.3rem;
+      }
+      .card-title {
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        color: var(--hextech-gold);
+        letter-spacing: 1.2px;
+        font-weight: 500;
+        text-transform: none;
+        opacity: 0.95;
+      }
+
+      /* Boş durum mesajı */
+      .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 4.5rem 2rem;
+        background: var(--bg-dark-secondary);
+        border-radius: 16px;
+        border: 1px dashed var(--hextech-dark-gold);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.8rem;
+      }
+      .empty-state p {
+        font-size: 1.4rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        letter-spacing: 1.2px;
+      }
+      .reset-btn {
+        background: transparent;
+        border: 1px solid var(--hextech-gold);
+        color: var(--hextech-gold);
+        font-family: var(--font-heading);
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        padding: 0.8rem 2.2rem;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: all var(--transition-smooth);
+        text-transform: uppercase;
+        font-size: 0.95rem;
+      }
+      .reset-btn:hover {
+        background: var(--hextech-gold);
+        color: var(--bg-dark-primary);
+        box-shadow: var(--shadow-gold);
+      }
+
+      /* ========== MODAL ========== */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 1.8rem;
+      }
+      .modal-overlay.active {
+        display: flex;
+      }
+      .modal {
+        background: var(--bg-dark-secondary);
+        border: 1px solid var(--hextech-dark-gold);
+        border-radius: 14px;
+        max-width: 980px;
+        width: 100%;
+        max-height: 92vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        box-shadow:
+          0 0 70px rgba(0, 0, 0, 0.95),
+          0 0 35px rgba(200, 170, 110, 0.35);
+        position: relative;
+        animation: modalFadeIn 0.38s ease;
+      }
+      @keyframes modalFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(35px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .modal-close {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: rgba(10, 14, 19, 0.85);
+        border: 1px solid var(--hextech-gold);
+        color: var(--hextech-gold);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        font-size: 1.3rem;
+        cursor: pointer;
+        z-index: 25;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-smooth);
+        font-weight: bold;
+        backdrop-filter: blur(6px);
+      }
+      .modal-close:hover {
+        background: var(--hextech-gold);
+        color: var(--bg-dark-primary);
+        box-shadow: var(--shadow-gold);
+      }
+      .modal-body {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .modal-image-side {
+        flex: 1 1 46%;
+        min-width: 280px;
+        background: #03070c;
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px 0 0 14px;
+      }
+      .modal-image-side img {
+        width: 100%;
+        height: 100%;
+        min-height: 400px;
+        object-fit: cover;
+        object-position: center 25%;
+        display: block;
+      }
+      .modal-details-side {
+        flex: 1 1 54%;
+        padding: 2.2rem 2.2rem 2.2rem 2.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        background: var(--bg-dark-secondary);
+        border-radius: 0 14px 14px 0;
+      }
+      .modal-champ-name {
+        font-size: 2.1rem;
+        font-weight: 800;
+        letter-spacing: 3.5px;
+        color: var(--text-primary);
+        line-height: 1.1;
+      }
+      .modal-champ-title {
+        font-family: var(--font-body);
+        font-size: 1.15rem;
+        color: var(--hextech-gold);
+        letter-spacing: 1.8px;
+        font-weight: 600;
+      }
+      .lore-heading {
+        font-family: var(--font-heading);
+        color: var(--hextech-gold);
+        font-size: 1rem;
+        letter-spacing: 2.5px;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid var(--hextech-dark-gold);
+        display: inline-block;
+        padding-bottom: 0.3rem;
+      }
+      .lore-text {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.75;
+        font-weight: 400;
+        max-height: 130px;
+        overflow-y: auto;
+        padding-right: 6px;
+      }
+      .abilities-container {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin: 0.4rem 0;
+      }
+      .ability-box {
+        width: 54px;
+        height: 54px;
+        background: var(--bg-dark-primary);
+        border: 2px solid var(--card-border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all var(--transition-smooth);
+        overflow: hidden;
+      }
+      .ability-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ability-box:hover {
+        border-color: var(--hextech-gold);
+        box-shadow: 0 0 14px rgba(200, 170, 110, 0.5);
+        transform: translateY(-2px);
+      }
+      .ability-box.selected {
+        border-color: var(--hextech-gold);
+        box-shadow: 0 0 20px rgba(200, 170, 110, 0.7);
+        background: var(--hextech-gold);
+      }
+      .ability-box.selected img {
+        filter: brightness(0.2) sepia(1) hue-rotate(5deg) saturate(2);
+      }
+      .selected-ability-info {
+        background: rgba(10, 14, 19, 0.75);
+        border-left: 4px solid var(--hextech-gold);
+        padding: 0.9rem 1.2rem;
+        border-radius: 0 8px 8px 0;
+        min-height: 70px;
+      }
+      .selected-ability-name {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        color: var(--hextech-gold);
+        letter-spacing: 1.2px;
+        font-size: 0.95rem;
+        margin-bottom: 0.35rem;
+      }
+      .selected-ability-desc {
+        color: var(--text-secondary);
+        font-size: 0.88rem;
+        line-height: 1.5;
+      }
+      .tips-list {
+        background: rgba(0, 0, 0, 0.35);
+        padding: 0.9rem 1.3rem;
+        border-radius: 8px;
+        list-style: none;
+        font-size: 0.9rem;
+      }
+      .tips-list li {
+        color: var(--text-secondary);
+        padding: 0.4rem 0;
+        border-bottom: 1px solid rgba(200, 170, 110, 0.18);
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+      }
+      .tips-list li::before {
+        content: "◆";
+        color: var(--hextech-gold);
+        font-size: 0.75rem;
+      }
+
+      /* ========== FOOTER ========== */
+      .footer {
+        background: var(--bg-dark-secondary);
+        border-top: 2px solid var(--hextech-gold);
+        padding: 3.5rem 2rem 2rem;
+        margin-top: 2rem;
+      }
+      .footer-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        max-width: 1250px;
+        margin: 0 auto 2.5rem;
+        justify-content: space-between;
+      }
+      .footer-col {
+        flex: 1 1 280px;
+        min-width: 250px;
+      }
+      .footer-col h4 {
+        font-size: 1.15rem;
+        letter-spacing: 3px;
+        color: var(--hextech-gold);
+        margin-bottom: 1.3rem;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 0.6rem;
+      }
+      .footer-col h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 45px;
+        height: 2px;
+        background: var(--hextech-gold);
+      }
+      .footer-col p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+        color: var(--text-secondary);
+      }
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+      .footer-links a {
+        color: var(--text-secondary);
+        font-weight: 500;
+        letter-spacing: 0.8px;
+        transition: all var(--transition-smooth);
+        display: inline-block;
+        padding: 0.2rem 0;
+      }
+      .footer-links a:hover {
+        color: var(--hextech-gold);
+        text-shadow: 0 0 15px rgba(200, 170, 110, 0.6);
+        transform: translateX(6px);
+      }
+      .contact-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        margin-bottom: 0.9rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+      .contact-icon {
+        font-size: 1.3rem;
+        color: var(--hextech-gold);
+        min-width: 26px;
+        text-align: center;
+      }
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(200, 170, 110, 0.25);
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        letter-spacing: 1px;
+        max-width: 1250px;
+        margin: 0 auto;
+      }
+
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 768px) {
+        .hero {
+          min-height: 55vh;
+        }
+        .controls {
+          padding: 2rem 1.2rem;
+          gap: 1.8rem;
+        }
+        .filter-btn {
+          padding: 0.55rem 1.2rem;
+          font-size: 0.8rem;
+          letter-spacing: 1.2px;
+        }
+        .modal-body {
+          flex-direction: column;
+        }
+        .modal-image-side {
+          border-radius: 14px 14px 0 0;
+          min-height: 260px;
+        }
+        .modal-image-side img {
+          min-height: 260px;
+        }
+        .modal-details-side {
+          border-radius: 0 0 14px 14px;
+          padding: 1.8rem;
+        }
+        .footer-grid {
+          gap: 2.5rem;
+          flex-direction: column;
+        }
+        .champion-grid {
+          grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+          gap: 1.5rem;
+        }
+        .card-image-wrapper {
+          height: 270px;
+        }
+      }
+      @media (max-width: 480px) {
+        .champion-grid {
+          grid-template-columns: 1fr;
+        }
+        .card-image-wrapper {
+          height: 330px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ==================== HERO SECTION ==================== -->
+    <header class="hero">
+      <div class="hero-content">
+        <div class="hero-logo">LEAGUE OF LEGENDS</div>
+        <h1 class="hero-title">ŞAMPİYONUNU BUL</h1>
+        <p class="hero-subtitle">
+          Runeterra'nın tüm kahramanlarını keşfet, yeteneklerini incele ve
+          vadide öne geç!
+        </p>
+      </div>
+    </header>
+
+    <!-- ==================== KONTROL PANELİ ==================== -->
+    <section class="controls" aria-label="Arama ve Filtreleme">
+      <div class="search-wrapper">
+        <span class="search-icon">&#128269;</span>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Şampiyon adı ara..."
+          autocomplete="off"
+          aria-label="Şampiyon arama"
+        />
+      </div>
+      <div class="filter-buttons" id="filterButtons">
+        <button class="filter-btn active" data-role="all">Hepsi</button>
+        <button class="filter-btn" data-role="Assassin">Suikastçı</button>
+        <button class="filter-btn" data-role="Fighter">Dövüşçü</button>
+        <button class="filter-btn" data-role="Mage">Büyücü</button>
+        <button class="filter-btn" data-role="Marksman">Nişancı</button>
+        <button class="filter-btn" data-role="Support">Destek</button>
+        <button class="filter-btn" data-role="Tank">Tank</button>
+      </div>
+    </section>
+
+    <!-- ==================== GALERİ ALANI ==================== -->
+    <section class="gallery-section" aria-label="Şampiyon Galerisi">
+      <div class="champion-grid" id="championGrid">
+        <!-- Kartlar JavaScript ile dinamik olarak render edilecek -->
+      </div>
+    </section>
+
+    <!-- ==================== MODAL (DETAY PENCERESİ) ==================== -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalChampName"
+      >
+        <button class="modal-close" id="modalCloseBtn" aria-label="Kapat">
+          &times;
+        </button>
+        <div class="modal-body">
+          <div class="modal-image-side">
+            <img id="modalSplash" src="" alt="Şampiyon Splash Art" />
+          </div>
+          <div class="modal-details-side">
+            <div>
+              <h2 class="modal-champ-name" id="modalChampName"></h2>
+              <p class="modal-champ-title" id="modalChampTitle"></p>
+            </div>
+            <div>
+              <span class="lore-heading">HİKAYE</span>
+              <p class="lore-text" id="modalLore"></p>
+            </div>
+            <div>
+              <span class="lore-heading">YETENEKLER</span>
+              <div class="abilities-container" id="abilitiesContainer">
+                <!-- Dinamik yetenek kutuları -->
+              </div>
+              <div class="selected-ability-info" id="selectedAbilityInfo">
+                <div
+                  class="selected-ability-name"
+                  id="selectedAbilityName"
+                ></div>
+                <div
+                  class="selected-ability-desc"
+                  id="selectedAbilityDesc"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <span class="lore-heading">İPUÇLARI</span>
+              <ul class="tips-list" id="tipsList"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Hakkında</h4>
+          <p>
+            Bu platform, League of Legends evrenindeki tüm şampiyonları
+            keşfetmeniz için Riot Games'in resmi verileriyle oluşturulmuş
+            kapsamlı bir rehberdir. Runeterra'nın derinliklerine dalın, favori
+            kahramanınızı bulun ve oyun içi taktiklerle öne geçin.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Linkler</h4>
+          <ul class="footer-links">
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">Şampiyonlar</a></li>
+            <li><a href="#">Rehberler</a></li>
+            <li><a href="#">İletişim</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>İletişim Bilgileri</h4>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon">&#9993;</span> yigit@lolrehberi.com
+            </li>
+            <li><span class="contact-icon">&#9906;</span> github.com/yigito</li>
+            <li>
+              <span class="contact-icon">&#128279;</span> linkedin.com/in/yigito
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Yiğit. Tüm Hakları Saklıdır.</div>
+    </footer>
+
+    <script>
+      (function () {
+        // ========== SABİTLER ==========
+        let API_VERSION = "13.24.1"; // fallback
+        const CHAMPION_LIST_URL_TEMPLATE = (version) =>
+          `https://ddragon.leagueoflegends.com/cdn/${version}/data/tr_TR/champion.json`;
+        const CHAMPION_DETAIL_BASE_TEMPLATE = (version) =>
+          `https://ddragon.leagueoflegends.com/cdn/${version}/data/tr_TR/champion`;
+        const LOADING_IMG_BASE = `https://ddragon.leagueoflegends.com/cdn/img/champion/loading`;
+        const SPLASH_IMG_BASE = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash`;
+        const SPELL_IMG_BASE_TEMPLATE = (version) =>
+          `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell`;
+
+        // ========== DOM REFERANSLARI ==========
+        const championGrid = document.getElementById("championGrid");
+        const searchInput = document.getElementById("searchInput");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const modalOverlay = document.getElementById("modalOverlay");
+        const modalCloseBtn = document.getElementById("modalCloseBtn");
+        const modalSplash = document.getElementById("modalSplash");
+        const modalChampName = document.getElementById("modalChampName");
+        const modalChampTitle = document.getElementById("modalChampTitle");
+        const modalLore = document.getElementById("modalLore");
+        const abilitiesContainer =
+          document.getElementById("abilitiesContainer");
+        const selectedAbilityName = document.getElementById(
+          "selectedAbilityName",
+        );
+        const selectedAbilityDesc = document.getElementById(
+          "selectedAbilityDesc",
+        );
+        const tipsList = document.getElementById("tipsList");
+
+        // ========== DURUM DEĞİŞKENLERİ ==========
+        let allChampions = [];
+        let filteredChampions = [];
+        let activeRole = "all";
+        let currentDetailData = null;
+
+        // ========== FONKSİYONLAR ==========
+
+        // En güncel API sürümünü al
+        async function getLatestVersion() {
+          try {
+            const response = await fetch(
+              "https://ddragon.leagueoflegends.com/api/versions.json",
+            );
+            if (!response.ok) throw new Error("Sürüm bilgisi alınamadı");
+            const versions = await response.json();
+            return versions[0]; // En güncel sürüm
+          } catch (error) {
+            console.warn(
+              "Güncel sürüm alınamadı, fallback kullanılıyor:",
+              API_VERSION,
+            );
+            return API_VERSION;
+          }
+        }
+
+        // Ana şampiyon listesini çek (Türkçe)
+        async function fetchChampionList(version) {
+          try {
+            const url = CHAMPION_LIST_URL_TEMPLATE(version);
+            const response = await fetch(url);
+            if (!response.ok)
+              throw new Error(`HTTP hatası: ${response.status}`);
+            const data = await response.json();
+
+            allChampions = Object.values(data.data).map((champ) => ({
+              id: champ.id,
+              key: champ.key,
+              name: champ.name,
+              title: champ.title,
+              tags: champ.tags,
+              lore: champ.lore,
+              blurb: champ.blurb,
+              spells: champ.spells,
+              passive: champ.passive,
+              allytips: champ.allytips,
+              enemytips: champ.enemytips,
+            }));
+
+            filteredChampions = [...allChampions];
+            renderGallery(filteredChampions);
+          } catch (error) {
+            console.error("Şampiyon listesi alınamadı:", error);
+            championGrid.innerHTML = `<div class="empty-state"><p>⚡ Şampiyon verileri yüklenirken bir hata oluştu. Lütfen sayfayı yenileyin.</p></div>`;
+          }
+        }
+
+        // Galeriyi render et
+        function renderGallery(championList) {
+          championGrid.innerHTML = "";
+
+          if (championList.length === 0) {
+            const emptyDiv = document.createElement("div");
+            emptyDiv.className = "empty-state";
+            emptyDiv.innerHTML = `
+            <p>⚠ Aramanızla eşleşen bir şampiyon bulunamadı.</p>
+            <button class="reset-btn" id="resetFiltersBtn">Filtreleri Sıfırla</button>
+          `;
+            championGrid.appendChild(emptyDiv);
+            document
+              .getElementById("resetFiltersBtn")
+              .addEventListener("click", resetAllFilters);
+            return;
+          }
+
+          championList.forEach((champ) => {
+            const card = document.createElement("div");
+            card.className = "champion-card";
+            card.setAttribute("data-id", champ.id);
+            card.innerHTML = `
+            <div class="card-image-wrapper">
+              <img src="${LOADING_IMG_BASE}/${champ.id}_0.jpg" alt="${champ.name}" loading="lazy">
+            </div>
+            <div class="card-info">
+              <h3 class="card-name">${champ.name}</h3>
+              <p class="card-title">${champ.title}</p>
+            </div>
+          `;
+            card.addEventListener("click", () => openModal(champ.id));
+            championGrid.appendChild(card);
+          });
+        }
+
+        // Filtreleme motoru
+        function applyFilters() {
+          const searchTerm = searchInput.value.trim().toLowerCase();
+
+          filteredChampions = allChampions.filter((champ) => {
+            const roleMatch =
+              activeRole === "all" ||
+              (champ.tags && champ.tags.includes(activeRole));
+            const nameMatch = champ.name.toLowerCase().includes(searchTerm);
+            return roleMatch && nameMatch;
+          });
+
+          renderGallery(filteredChampions);
+        }
+
+        function resetAllFilters() {
+          searchInput.value = "";
+          activeRole = "all";
+          filterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+            if (btn.getAttribute("data-role") === "all")
+              btn.classList.add("active");
+          });
+          applyFilters();
+        }
+
+        // Detay modalını aç (Türkçe detayları çeker)
+        async function openModal(championId) {
+          // Modalı hemen göster (yükleme durumu)
+          modalChampName.textContent = "Yükleniyor...";
+          modalChampTitle.textContent = "";
+          modalLore.textContent = "";
+          abilitiesContainer.innerHTML = "";
+          selectedAbilityName.textContent = "";
+          selectedAbilityDesc.textContent = "";
+          tipsList.innerHTML = "";
+          modalSplash.src = "";
+          modalOverlay.classList.add("active");
+          modalOverlay.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+
+          try {
+            const detailUrl = `${CHAMPION_DETAIL_BASE_TEMPLATE(API_VERSION)}/${championId}.json`;
+            const response = await fetch(detailUrl);
+            if (!response.ok) {
+              // Bazen şampiyon ID'leri farklı olabilir, ana listeden al
+              const fallbackChamp = allChampions.find(
+                (c) => c.id === championId,
+              );
+              if (fallbackChamp) {
+                populateModalFromList(fallbackChamp);
+              } else {
+                throw new Error("Şampiyon bulunamadı");
+              }
+              return;
+            }
+
+            const data = await response.json();
+            const champDetail = data.data[championId];
+            if (!champDetail) {
+              throw new Error("Detay verisi eksik");
+            }
+
+            currentDetailData = champDetail;
+            populateModal(champDetail);
+          } catch (error) {
+            console.error("Detay yüklenirken hata:", error);
+            const fallbackChamp = allChampions.find((c) => c.id === championId);
+            if (fallbackChamp) {
+              populateModalFromList(fallbackChamp);
+            } else {
+              closeModal();
+              alert("Şampiyon detayları yüklenemedi. Lütfen tekrar deneyin.");
+            }
+          }
+        }
+
+        // API'den tam detay gelince (Türkçe)
+        function populateModal(champ) {
+          modalSplash.src = `${SPLASH_IMG_BASE}/${champ.id}_0.jpg`;
+          modalSplash.alt = `${champ.name} Splash Art`;
+          modalChampName.textContent = champ.name;
+          modalChampTitle.textContent = champ.title;
+          modalLore.textContent =
+            champ.lore ||
+            champ.blurb ||
+            "Bu şampiyonun hikayesi henüz eklenmedi.";
+
+          const allAbilities = [];
+          if (champ.passive) {
+            allAbilities.push({
+              key: "P",
+              name: champ.passive.name,
+              desc: champ.passive.description.replace(/<[^>]+>/g, ""),
+              icon: `${SPELL_IMG_BASE_TEMPLATE(API_VERSION)}/${champ.passive.image.full}`,
+            });
+          }
+          if (champ.spells) {
+            const keys = ["Q", "W", "E", "R"];
+            champ.spells.forEach((spell, idx) => {
+              allAbilities.push({
+                key: keys[idx] || "?",
+                name: spell.name,
+                desc: spell.description.replace(/<[^>]+>/g, ""),
+                icon: `${SPELL_IMG_BASE_TEMPLATE(API_VERSION)}/${spell.image.full}`,
+              });
+            });
+          }
+
+          renderAbilities(allAbilities);
+
+          const combinedTips = [];
+          if (champ.allytips) combinedTips.push(...champ.allytips.slice(0, 2));
+          if (champ.enemytips)
+            combinedTips.push(...champ.enemytips.slice(0, 2));
+          if (combinedTips.length === 0)
+            combinedTips.push("Bu şampiyon için henüz ipucu eklenmedi.");
+          renderTips(combinedTips);
+        }
+
+        // Ana listedeki verilerle modalı doldur (fallback, Türkçe)
+        function populateModalFromList(champ) {
+          modalSplash.src = `${SPLASH_IMG_BASE}/${champ.id}_0.jpg`;
+          modalSplash.alt = `${champ.name} Splash Art`;
+          modalChampName.textContent = champ.name;
+          modalChampTitle.textContent = champ.title;
+          modalLore.textContent =
+            champ.lore ||
+            champ.blurb ||
+            "Bu şampiyonun hikayesi henüz eklenmedi.";
+
+          const allAbilities = [];
+          if (champ.passive) {
+            allAbilities.push({
+              key: "P",
+              name: champ.passive.name,
+              desc: champ.passive.description
+                ? champ.passive.description.replace(/<[^>]+>/g, "")
+                : "Açıklama yok",
+              icon: `${SPELL_IMG_BASE_TEMPLATE(API_VERSION)}/${champ.passive.image.full}`,
+            });
+          }
+          if (champ.spells) {
+            const keys = ["Q", "W", "E", "R"];
+            champ.spells.forEach((spell, idx) => {
+              allAbilities.push({
+                key: keys[idx] || "?",
+                name: spell.name,
+                desc: spell.description
+                  ? spell.description.replace(/<[^>]+>/g, "")
+                  : "Açıklama yok",
+                icon: `${SPELL_IMG_BASE_TEMPLATE(API_VERSION)}/${spell.image.full}`,
+              });
+            });
+          }
+
+          renderAbilities(allAbilities);
+
+          const combinedTips = [];
+          if (champ.allytips) combinedTips.push(...champ.allytips.slice(0, 2));
+          if (champ.enemytips)
+            combinedTips.push(...champ.enemytips.slice(0, 2));
+          if (combinedTips.length === 0)
+            combinedTips.push("Bu şampiyon için henüz ipucu eklenmedi.");
+          renderTips(combinedTips);
+        }
+
+        function renderAbilities(abilities) {
+          abilitiesContainer.innerHTML = "";
+          abilities.forEach((ability, index) => {
+            const box = document.createElement("div");
+            box.className = "ability-box";
+            if (index === 0) box.classList.add("selected");
+            box.innerHTML = `<img src="${ability.icon}" alt="${ability.name}" loading="lazy" onerror="this.parentElement.innerHTML='<span style=\\'color:white\\'>${ability.key}</span>'">`;
+            box.setAttribute("data-ability-index", index);
+            box.addEventListener("click", () =>
+              selectAbility(index, abilities),
+            );
+            abilitiesContainer.appendChild(box);
+          });
+          if (abilities.length > 0) {
+            updateSelectedAbilityInfo(abilities[0]);
+          }
+        }
+
+        function renderTips(tipsArray) {
+          tipsList.innerHTML = "";
+          tipsArray.forEach((tip) => {
+            const li = document.createElement("li");
+            li.textContent = tip;
+            tipsList.appendChild(li);
+          });
+        }
+
+        function selectAbility(index, abilitiesArray) {
+          if (!abilitiesArray || !abilitiesArray[index]) return;
+          const boxes = abilitiesContainer.querySelectorAll(".ability-box");
+          boxes.forEach((b) => b.classList.remove("selected"));
+          if (boxes[index]) boxes[index].classList.add("selected");
+          updateSelectedAbilityInfo(abilitiesArray[index]);
+        }
+
+        function updateSelectedAbilityInfo(ability) {
+          selectedAbilityName.textContent = `[${ability.key}] ${ability.name}`;
+          selectedAbilityDesc.textContent = ability.desc;
+        }
+
+        function closeModal() {
+          modalOverlay.classList.remove("active");
+          modalOverlay.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          currentDetailData = null;
+        }
+
+        // ========== OLAY DİNLEYİCİLERİ ==========
+        searchInput.addEventListener("input", applyFilters);
+
+        filterButtons.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            filterButtons.forEach((b) => b.classList.remove("active"));
+            this.classList.add("active");
+            activeRole = this.getAttribute("data-role");
+            applyFilters();
+          });
+        });
+
+        modalCloseBtn.addEventListener("click", closeModal);
+        modalOverlay.addEventListener("click", (e) => {
+          if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modalOverlay.classList.contains("active"))
+            closeModal();
+        });
+
+        // ========== BAŞLAT ==========
+        window.addEventListener("DOMContentLoaded", async () => {
+          // Önce en güncel sürümü al
+          API_VERSION = await getLatestVersion();
+          console.log("Kullanılan API sürümü:", API_VERSION);
+          // Sonra Türkçe şampiyon listesini çek
+          await fetchChampionList(API_VERSION);
+        });
+      })();
+    </script>
+  </body>
+</html>
