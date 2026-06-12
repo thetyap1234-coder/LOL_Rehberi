@@ -49,9 +49,10 @@ Proje tamamen bağımsız (Vanilla JS) olarak geliştirildiği için herhangi bi
 
 ```text
 lol-champion-gallery/
-resim dosyaları , css ve js dosyaları ihtiyaç duyulmadığı için sonradan kaldırılmıştır
+resim dosyaları , css ve js dosyaları ihtiyaç duyulmadığı için sonradan kaldırılmıştır !!!
 ├── index.html          # Ana HTML iskeleti, CSS stilleri ve JS motoru (Tek sayfa mimarisi)
 └── README.md           # Proje hakkında bilgilendirme dosyası
 
 URL:
 https://cozy-dragon-0a81c5.netlify.app/
+resim dosyalrı , css ve js dosyalarına ihtiyaç duyulmadığı için sonradan kaldırılmıştır
