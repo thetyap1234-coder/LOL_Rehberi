@@ -52,3 +52,6 @@ lol-champion-gallery/
 │
 ├── index.html          # Ana HTML iskeleti, CSS stilleri ve JS motoru (Tek sayfa mimarisi)
 └── README.md           # Proje hakkında bilgilendirme dosyası
+
+URL:
+https://cozy-dragon-0a81c5.netlify.app/
